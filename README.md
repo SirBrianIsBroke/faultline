@@ -160,6 +160,7 @@ I kept the risk model explicit on purpose. A critical failure carries more weigh
 | Command | Purpose |
 | --- | --- |
 | `npm run demo` | Starts both fixtures, executes Faultline, and refreshes the report evidence. |
+| `npm run demo:ci` | Executes the demo without rewriting the committed sample report. |
 | `npm run dev` | Opens the report UI in development mode. |
 | `npm test` | Runs focused unit coverage for configuration, JSON drift, stability, and risk. |
 | `npm run typecheck` | Verifies the Node and React TypeScript projects. |

@@ -13,14 +13,16 @@ try {
     commit: 'a9c2e71',
     branch: 'release/2.8.0',
   });
-  const publicDirectory = path.resolve('dashboard/public');
-  const publicArtifacts = path.join(publicDirectory, 'artifacts');
-  await mkdir(publicArtifacts, { recursive: true });
-  await writeFile(path.join(publicDirectory, 'sample-report.json'), await readFile(reportPath));
+  if (!process.argv.includes('--no-sync')) {
+    const publicDirectory = path.resolve('dashboard/public');
+    const publicArtifacts = path.join(publicDirectory, 'artifacts');
+    await mkdir(publicArtifacts, { recursive: true });
+    await writeFile(path.join(publicDirectory, 'sample-report.json'), await readFile(reportPath));
 
-  const sourceArtifacts = path.join(path.dirname(reportPath), 'artifacts');
-  for (const filename of await readdir(sourceArtifacts)) {
-    await copyFile(path.join(sourceArtifacts, filename), path.join(publicArtifacts, filename));
+    const sourceArtifacts = path.join(path.dirname(reportPath), 'artifacts');
+    for (const filename of await readdir(sourceArtifacts)) {
+      await copyFile(path.join(sourceArtifacts, filename), path.join(publicArtifacts, filename));
+    }
   }
 
   process.stdout.write(`Faultline demo complete: ${report.verdict.toUpperCase()} · risk ${report.summary.riskScore}/100\n`);
