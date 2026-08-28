@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dashboard/dist/
+.faultline/
+.DS_Store
+*.log
+playwright-report/
+test-results/

@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "runId": "2026-08-28T01-18-00-354Z",
+  "project": "Northstar Release Console",
+  "commit": "a9c2e71",
+  "branch": "release/2.8.0",
+  "createdAt": "2026-08-28T01:18:06.279Z",
+  "baselineUrl": "http://127.0.0.1:4311",
+  "candidateUrl": "http://127.0.0.1:4312",
+  "verdict": "hold",
+  "summary": {
+    "total": 5,
+    "passed": 2,
+    "failed": 3,
+    "flaky": 0,
+    "riskScore": 94,
+    "durationMs": 5801
+  },
+  "checks": [
+    {
+      "id": "release-command-center",
+      "title": "Release command center",
+      "description": "Protects the primary approval path and its post-interaction visual state.",
+      "kind": "browser",
+      "severity": "high",
+      "status": "failed",
+      "summary": "The primary approval action changed or disappeared.",
+      "durationMs": 2183,
+      "evidence": [
+        {
+          "label": "Visual change",
+          "value": "0.58%",
+          "tone": "negative"
+        },
+        {
+          "label": "Allowed budget",
+          "value": "0.5%",
+          "tone": "neutral"
+        },
+        {
+          "label": "Stability runs",
+          "value": "2",
+          "tone": "neutral"
+        }
+      ],
+      "artifacts": {
+        "baseline": "artifacts/release-command-center-2-baseline.png",
+        "candidate": "artifacts/release-command-center-2-candidate.png",
+        "diff": "artifacts/release-command-center-2-diff.png"
+      },
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 1224,
+          "failures": [
+            "The primary approval action changed or disappeared.",
+            "Visual change is 0.58%, above the 0.5% budget."
+          ]
+        },
+        {
+          "status": "failed",
+          "durationMs": 959,
+          "failures": [
+            "The primary approval action changed or disappeared.",
+            "Visual change is 0.58%, above the 0.5% budget."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rollback-readiness",
+      "title": "Rollback readiness",
+      "description": "Verifies that operators retain a clear and usable rollback control.",
+      "kind": "browser",
+      "severity": "critical",
+      "status": "failed",
+      "summary": "The candidate no longer reports a release-ready rollback plan.",
+      "durationMs": 1714,
+      "evidence": [
+        {
+          "label": "Visual change",
+          "value": "0.19%",
+          "tone": "positive"
+        },
+        {
+          "label": "Allowed budget",
+          "value": "0.25%",
+          "tone": "neutral"
+        },
+        {
+          "label": "Stability runs",
+          "value": "2",
+          "tone": "neutral"
+        }
+      ],
+      "artifacts": {
+        "baseline": "artifacts/rollback-readiness-2-baseline.png",
+        "candidate": "artifacts/rollback-readiness-2-candidate.png",
+        "diff": "artifacts/rollback-readiness-2-diff.png"
+      },
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 861,
+          "failures": [
+            "The candidate no longer reports a release-ready rollback plan."
+          ]
+        },
+        {
+          "status": "failed",
+          "durationMs": 853,
+          "failures": [
+            "The candidate no longer reports a release-ready rollback plan."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audit-log",
+      "title": "Audit log",
+      "description": "Guards the release history view against accidental UI drift.",
+      "kind": "browser",
+      "severity": "medium",
+      "status": "passed",
+      "summary": "Candidate stayed inside the visual and behavior budget.",
+      "durationMs": 1674,
+      "evidence": [
+        {
+          "label": "Visual change",
+          "value": "0%",
+          "tone": "positive"
+        },
+        {
+          "label": "Allowed budget",
+          "value": "0.1%",
+          "tone": "neutral"
+        },
+        {
+          "label": "Stability runs",
+          "value": "2",
+          "tone": "neutral"
+        }
+      ],
+      "artifacts": {
+        "baseline": "artifacts/audit-log-2-baseline.png",
+        "candidate": "artifacts/audit-log-2-candidate.png",
+        "diff": "artifacts/audit-log-2-diff.png"
+      },
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 830,
+          "failures": []
+        },
+        {
+          "status": "passed",
+          "durationMs": 844,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "release-api-contract",
+      "title": "Latest release contract",
+      "description": "Protects the operator payload consumed by the release console.",
+      "kind": "api",
+      "severity": "critical",
+      "status": "failed",
+      "summary": "Candidate response broke the schema: /approvalStatus must be equal to constant, /rollbackReady must be equal to constant, /owner must have required property 'id'.",
+      "durationMs": 186,
+      "evidence": [
+        {
+          "label": "Contract changes",
+          "value": "3",
+          "tone": "negative"
+        },
+        {
+          "label": "Latency delta",
+          "value": "560%",
+          "tone": "warning"
+        },
+        {
+          "label": "Stability runs",
+          "value": "2",
+          "tone": "neutral"
+        }
+      ],
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 109,
+          "failures": [
+            "Candidate response broke the schema: /approvalStatus must be equal to constant, /rollbackReady must be equal to constant, /owner must have required property 'id'.",
+            "3 contract changes detected against baseline."
+          ]
+        },
+        {
+          "status": "failed",
+          "durationMs": 77,
+          "failures": [
+            "Candidate response broke the schema: /approvalStatus must be equal to constant, /rollbackReady must be equal to constant, /owner must have required property 'id'.",
+            "3 contract changes detected against baseline.",
+            "Latency regressed 560%, above the 200% budget."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "health-api-contract",
+      "title": "Service health contract",
+      "description": "Confirms that deployment health remains stable across environments.",
+      "kind": "api",
+      "severity": "low",
+      "status": "passed",
+      "summary": "Candidate preserved the API contract and performance budget.",
+      "durationMs": 44,
+      "evidence": [
+        {
+          "label": "Contract changes",
+          "value": "0",
+          "tone": "positive"
+        },
+        {
+          "label": "Latency delta",
+          "value": "0%",
+          "tone": "positive"
+        },
+        {
+          "label": "Stability runs",
+          "value": "2",
+          "tone": "neutral"
+        }
+      ],
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 21,
+          "failures": []
+        },
+        {
+          "status": "passed",
+          "durationMs": 23,
+          "failures": []
+        }
+      ]
+    }
+  ]
+}
