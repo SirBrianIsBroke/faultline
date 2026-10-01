@@ -29,7 +29,7 @@
     "playwright": "^1.55.0",
     "pngjs": "^7.0.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
@@ -37,7 +37,7 @@
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
     "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
+    "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.0.0",
     "eslint": "^10.0.0",
     "globals": "^17.0.0",
